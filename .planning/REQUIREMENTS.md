@@ -88,40 +88,40 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| CSV-01 | — | Pending |
-| CSV-02 | — | Pending |
-| CSV-03 | — | Pending |
-| CSV-04 | — | Pending |
-| KPI-01 | — | Pending |
-| KPI-02 | — | Pending |
-| KPI-03 | — | Pending |
-| KPI-04 | — | Pending |
-| KPI-05 | — | Pending |
-| AGE-01 | — | Pending |
-| AGE-02 | — | Pending |
-| AGE-03 | — | Pending |
-| AGE-04 | — | Pending |
-| AGE-05 | — | Pending |
-| MOD-01 | — | Pending |
-| MOD-02 | — | Pending |
-| MOD-03 | — | Pending |
-| WRK-01 | — | Pending |
-| WRK-02 | — | Pending |
-| RPT-01 | — | Pending |
-| RPT-02 | — | Pending |
-| RPT-03 | — | Pending |
-| RPT-04 | — | Pending |
-| RPT-05 | — | Pending |
-| INF-01 | — | Pending |
-| INF-02 | — | Pending |
-| INF-03 | — | Pending |
-| INF-04 | — | Pending |
+| CSV-01 | Phase 1 | Pending |
+| CSV-02 | Phase 1 | Pending |
+| CSV-03 | Phase 1 | Pending |
+| CSV-04 | Phase 1 | Pending |
+| KPI-01 | Phase 2 | Pending |
+| KPI-02 | Phase 2 | Pending |
+| KPI-03 | Phase 2 | Pending |
+| KPI-04 | Phase 2 | Pending |
+| KPI-05 | Phase 2 | Pending |
+| AGE-01 | Phase 2 | Pending |
+| AGE-02 | Phase 2 | Pending |
+| AGE-03 | Phase 2 | Pending |
+| AGE-04 | Phase 2 | Pending |
+| AGE-05 | Phase 2 | Pending |
+| MOD-01 | Phase 3 | Pending |
+| MOD-02 | Phase 3 | Pending |
+| MOD-03 | Phase 3 | Pending |
+| WRK-01 | Phase 2 | Pending |
+| WRK-02 | Phase 2 | Pending |
+| RPT-01 | Phase 4 | Pending |
+| RPT-02 | Phase 4 | Pending |
+| RPT-03 | Phase 4 | Pending |
+| RPT-04 | Phase 4 | Pending |
+| RPT-05 | Phase 4 | Pending |
+| INF-01 | Phase 1 | Pending |
+| INF-02 | Phase 1 | Pending |
+| INF-03 | Phase 1 | Pending |
+| INF-04 | Phase 1 | Pending |
 
 **Coverage:**
 - v1 requirements: 28 total
-- Mapped to phases: 0
-- Unmapped: 28 ⚠️
+- Mapped to phases: 28 ✓
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-02-11*
-*Last updated: 2026-02-11 after initial definition*
+*Last updated: 2026-02-11 after roadmap creation*
