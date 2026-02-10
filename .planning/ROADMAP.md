@@ -7,7 +7,7 @@
 ## Phases
 
 - [x] **Phase 1: Foundation & CSV Pipeline** - Go 脚手架、嵌入资源、HTTP 服务与 CSV 解析管线 ✓ (2026-02-11)
-- [ ] **Phase 2: Core KPI & Bottleneck Analysis** - KPI 卡片、严重程度图表、修复时效、人员负载
+- [x] **Phase 2: Core KPI & Bottleneck Analysis** - KPI 卡片、严重程度图表、修复时效、人员负载 ✓ (2026-02-11)
 - [ ] **Phase 3: Module Heatmap & Trend** - 模块统计、热力图、趋势分析
 - [ ] **Phase 4: Daily Report Generation** - 日报自动生成与剪贴板复制
 
@@ -40,9 +40,9 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 02-01-PLAN.md — KPI 卡片（今日/昨日新增修复、库存）+ 严重程度分布图（饼图/柱状图切换、全部/仅新增筛选）(KPI-01..05)
-- [ ] 02-02-PLAN.md — 修复时效统计（均值/P50/分布桶）+ 未解决 Bug 积压排名表 (AGE-01..05)
-- [ ] 02-03-PLAN.md — 人员工作负载分布图（激活/总量按指派人）(WRK-01, WRK-02)
+- [x] 02-01-PLAN.md — KPI 卡片（今日/昨日新增修复、库存）+ 严重程度分布图（饼图/柱状图切换、全部/仅新增筛选）(KPI-01..05)
+- [x] 02-02-PLAN.md — 修复时效统计（均值/P50/分布桶）+ 未解决 Bug 积压排名表 (AGE-01..05)
+- [x] 02-03-PLAN.md — 人员工作负载分布图（激活/总量按指派人）(WRK-01, WRK-02)
 
 ### Phase 3: Module Heatmap & Trend
 **Goal**: Users can identify which modules have the worst bug concentration and track quality trends
@@ -75,6 +75,6 @@ Plans:
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation & CSV Pipeline | 2/2 | Complete | 2026-02-11 |
-| 2. Core KPI & Bottleneck Analysis | 0/3 | Not started | - |
+| 2. Core KPI & Bottleneck Analysis | 3/3 | Complete | 2026-02-11 |
 | 3. Module Heatmap & Trend | 0/1 | Not started | - |
 | 4. Daily Report Generation | 0/1 | Not started | - |
