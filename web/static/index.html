@@ -108,6 +108,47 @@
                 </div>
             </div>
         </div>
+
+        <!-- 修复时效行 -->
+        <div class="chart-row">
+            <div class="chart-card" id="fix-time-stats-card">
+                <h3 class="chart-title">修复时效统计</h3>
+                <div class="fix-time-summary" id="fix-time-summary">
+                    <div class="placeholder-text">数据加载后显示</div>
+                </div>
+            </div>
+            <div class="chart-card">
+                <h3 class="chart-title">修复时长分布</h3>
+                <div class="chart-container chart-container-sm" id="chart-fix-time-dist">
+                    <div class="placeholder-text">数据加载后显示</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 未解决 Bug 积压排名 -->
+        <div class="data-table-card" id="backlog-card">
+            <div class="chart-header">
+                <h3 class="chart-title">未解决 Bug 积压排名</h3>
+                <span class="backlog-count" id="backlog-count"></span>
+            </div>
+            <div class="table-scroll">
+                <table class="data-table" id="backlog-table">
+                    <thead>
+                        <tr>
+                            <th>Bug编号</th>
+                            <th>标题</th>
+                            <th>严重程度</th>
+                            <th>指派给</th>
+                            <th>创建日期</th>
+                            <th>积压天数</th>
+                        </tr>
+                    </thead>
+                    <tbody id="backlog-tbody">
+                        <tr><td colspan="6" class="placeholder-text">数据加载后显示</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </main>
 
     <script src="js/lib/echarts.min.js"></script>

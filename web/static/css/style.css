@@ -396,6 +396,130 @@ body {
     box-shadow: var(--shadow);
     padding: 20px 24px;
     min-height: 200px;
+    margin-bottom: 24px;
+}
+
+/* Fix Time Summary */
+.fix-time-summary {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.stat-box {
+    background: var(--bg);
+    border-radius: var(--radius-sm);
+    padding: 20px;
+    text-align: center;
+}
+
+.stat-box .stat-label {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+
+.stat-box .stat-value {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.stat-box .stat-unit {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-left: 4px;
+}
+
+.stat-sub-text {
+    grid-column: 1 / -1;
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 4px;
+}
+
+/* Smaller chart container for distribution chart */
+.chart-container-sm {
+    min-height: 240px;
+}
+
+/* Data Table */
+.table-scroll {
+    max-height: 480px;
+    overflow-y: auto;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.data-table th {
+    background: var(--bg);
+    padding: 10px 12px;
+    text-align: left;
+    font-weight: 600;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.data-table td {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+}
+
+.data-table tr:hover td {
+    background: var(--primary-light);
+}
+
+/* Severity Badges */
+.severity-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.severity-badge.s1 {
+    background: #fff2f0;
+    color: #ff4d4f;
+}
+
+.severity-badge.s2 {
+    background: #fffbe6;
+    color: #faad14;
+}
+
+.severity-badge.s3 {
+    background: #e6f7ff;
+    color: #1890ff;
+}
+
+.severity-badge.s4 {
+    background: #f6ffed;
+    color: #52c41a;
+}
+
+/* Age Color Coding */
+.age-danger {
+    color: var(--error);
+    font-weight: 600;
+}
+
+.age-warning {
+    color: var(--warning);
+    font-weight: 600;
+}
+
+/* Backlog Count */
+.backlog-count {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: normal;
 }
 
 /* Placeholder */

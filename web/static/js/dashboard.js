@@ -8,6 +8,7 @@
     var severityData = null;
     var currentChartType = 'pie';
     var currentScope = 'all';
+    var fixTimeDistChart = null;
 
     // Color scheme for severity levels
     var severityColors = {
@@ -36,6 +37,7 @@
                 severityData = data.severity;
                 renderSeverityChart(data.severity);
                 initToggles();
+                renderAge(data.age);
             })
             .catch(function (err) {
                 console.error('Dashboard error:', err);
@@ -269,6 +271,169 @@
                 updateChart();
             });
         }
+    }
+
+    // ===========================
+    // Age Analysis (Fix Time + Backlog)
+    // ===========================
+    function renderAge(ageData) {
+        if (!ageData) return;
+        renderFixTimeStats(ageData.fixTime);
+        renderBacklogTable(ageData.backlog);
+    }
+
+    function renderFixTimeStats(fixTime) {
+        var summaryEl = document.getElementById('fix-time-summary');
+        var chartEl = document.getElementById('chart-fix-time-dist');
+        if (!summaryEl) return;
+
+        if (!fixTime) {
+            summaryEl.innerHTML = '<div class="placeholder-text">暂无已解决 Bug 数据</div>';
+            if (chartEl) chartEl.innerHTML = '<div class="placeholder-text">暂无数据</div>';
+            return;
+        }
+
+        // Format value: if < 24h show hours, else show days
+        function formatDuration(hours, days) {
+            if (hours < 24) {
+                return { value: hours.toFixed(1), unit: '小时' };
+            }
+            return { value: days.toFixed(1), unit: '天' };
+        }
+
+        var avg = formatDuration(fixTime.avgHours, fixTime.avgDays);
+        var p50 = formatDuration(fixTime.p50Hours, fixTime.p50Days);
+
+        summaryEl.innerHTML =
+            '<div class="stat-box">' +
+                '<div class="stat-label">平均修复时长</div>' +
+                '<div class="stat-value">' + avg.value + '<span class="stat-unit">' + avg.unit + '</span></div>' +
+            '</div>' +
+            '<div class="stat-box">' +
+                '<div class="stat-label">P50 修复时长</div>' +
+                '<div class="stat-value">' + p50.value + '<span class="stat-unit">' + p50.unit + '</span></div>' +
+            '</div>' +
+            '<div class="stat-sub-text">共 ' + fixTime.totalResolved + ' 条已解决记录</div>';
+
+        // Render distribution chart
+        if (!chartEl) return;
+        chartEl.innerHTML = '';
+
+        if (fixTimeDistChart) {
+            fixTimeDistChart.dispose();
+        }
+        fixTimeDistChart = echarts.init(chartEl);
+
+        var labels = [];
+        var values = [];
+        for (var i = 0; i < fixTime.distribution.length; i++) {
+            labels.push(fixTime.distribution[i].label);
+            values.push(fixTime.distribution[i].count);
+        }
+
+        var barColors = ['#52c41a', '#1890ff', '#faad14', '#ff4d4f'];
+
+        var option = {
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: { type: 'shadow' }
+            },
+            grid: {
+                left: '3%',
+                right: '8%',
+                top: '8%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: {
+                type: 'value',
+                minInterval: 1
+            },
+            yAxis: {
+                type: 'category',
+                data: labels.slice().reverse(),
+                axisTick: { show: false },
+                axisLabel: { fontSize: 13 }
+            },
+            series: [{
+                type: 'bar',
+                data: values.slice().reverse().map(function (v, idx) {
+                    return {
+                        value: v,
+                        itemStyle: {
+                            color: barColors.slice().reverse()[idx],
+                            borderRadius: [0, 4, 4, 0]
+                        }
+                    };
+                }),
+                barWidth: '50%',
+                label: {
+                    show: true,
+                    position: 'right',
+                    fontSize: 12,
+                    color: '#666'
+                }
+            }]
+        };
+
+        fixTimeDistChart.setOption(option);
+
+        window.addEventListener('resize', function () {
+            if (fixTimeDistChart) {
+                fixTimeDistChart.resize();
+            }
+        });
+    }
+
+    function renderBacklogTable(backlog) {
+        var countEl = document.getElementById('backlog-count');
+        var tbody = document.getElementById('backlog-tbody');
+        if (!tbody) return;
+
+        if (countEl) {
+            countEl.textContent = backlog ? '共 ' + backlog.length + ' 条' : '';
+        }
+
+        if (!backlog || backlog.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="6" class="placeholder-text">暂无未解决 Bug</td></tr>';
+            return;
+        }
+
+        var html = '';
+        for (var i = 0; i < backlog.length; i++) {
+            var item = backlog[i];
+            var title = item.title;
+            if (title.length > 40) {
+                title = title.substring(0, 40) + '…';
+            }
+
+            // Severity badge
+            var sevClass = 's' + item.severity;
+            var sevLabels = { '1': '致命', '2': '严重', '3': '一般', '4': '轻微' };
+            var sevLabel = sevLabels[item.severity] || item.severity;
+
+            // Age color coding
+            var ageClass = '';
+            if (item.ageDays > 30) {
+                ageClass = 'age-danger';
+            } else if (item.ageDays > 14) {
+                ageClass = 'age-warning';
+            }
+
+            // Date: show first 10 chars
+            var dateStr = item.createdDate ? item.createdDate.substring(0, 10) : '';
+
+            html += '<tr>' +
+                '<td>' + item.id + '</td>' +
+                '<td title="' + item.title.replace(/"/g, '&quot;') + '">' + title + '</td>' +
+                '<td><span class="severity-badge ' + sevClass + '">' + sevLabel + '</span></td>' +
+                '<td>' + (item.assignee || '—') + '</td>' +
+                '<td>' + dateStr + '</td>' +
+                '<td class="' + ageClass + '">' + item.ageDays + ' 天</td>' +
+                '</tr>';
+        }
+
+        tbody.innerHTML = html;
     }
 
     // ===========================
