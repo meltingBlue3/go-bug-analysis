@@ -40,9 +40,9 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 02-01: KPI cards and severity distribution charts with toggle controls (KPI-01..05)
-- [ ] 02-02: Fix time statistics, age distribution, and backlog age ranking table (AGE-01..05)
-- [ ] 02-03: Personnel workload distribution charts (WRK-01, WRK-02)
+- [ ] 02-01-PLAN.md — KPI 卡片（今日/昨日新增修复、库存）+ 严重程度分布图（饼图/柱状图切换、全部/仅新增筛选）(KPI-01..05)
+- [ ] 02-02-PLAN.md — 修复时效统计（均值/P50/分布桶）+ 未解决 Bug 积压排名表 (AGE-01..05)
+- [ ] 02-03-PLAN.md — 人员工作负载分布图（激活/总量按指派人）(WRK-01, WRK-02)
 
 ### Phase 3: Module Heatmap & Trend
 **Goal**: Users can identify which modules have the worst bug concentration and track quality trends
