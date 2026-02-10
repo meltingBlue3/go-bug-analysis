@@ -8,6 +8,7 @@ import (
 	"strings"
 	"sync"
 
+	"go-bug-analysis/internal/analysis"
 	"go-bug-analysis/internal/csvparse"
 )
 
@@ -43,6 +44,7 @@ func New(staticFS fs.FS, state *AppState) http.Handler {
 	// API routes
 	mux.HandleFunc("POST /api/upload", handleUpload(state))
 	mux.HandleFunc("GET /api/data", handleData(state))
+	mux.HandleFunc("GET /api/analysis", handleAnalysis(state))
 
 	return mux
 }
@@ -154,6 +156,24 @@ func handleData(state *AppState) http.HandlerFunc {
 		}
 
 		writeJSON(w, http.StatusOK, result)
+	}
+}
+
+// handleAnalysis runs analysis on the stored bug data and returns the results.
+func handleAnalysis(state *AppState) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json; charset=utf-8")
+
+		result := state.GetResult()
+		if result == nil {
+			writeJSON(w, http.StatusBadRequest, map[string]string{
+				"error": "请先上传 CSV 文件",
+			})
+			return
+		}
+
+		analysisResult := analysis.Analyze(result.Bugs)
+		writeJSON(w, http.StatusOK, analysisResult)
 	}
 }
 
