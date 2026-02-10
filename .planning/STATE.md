@@ -10,28 +10,28 @@ See: .planning/PROJECT.md (updated 2026-02-11)
 ## Current Position
 
 Phase: 2 of 4 (Core KPI & Bottleneck Analysis) — IN PROGRESS
-Plan: 1 of 3 in current phase — COMPLETE
-Status: 02-01 complete, ready for 02-02 (Backlog Age & Workload)
-Last activity: 2026-02-11 — Completed 02-01 (KPI Cards & Severity Distribution)
+Plan: 2 of 3 in current phase — COMPLETE
+Status: 02-02 complete, ready for 02-03 (Module Trend)
+Last activity: 2026-02-11 — Completed 02-02 (Fix Time Stats & Backlog Age Ranking)
 
-Progress: [████░░░░░░] 43% (3/7 plans)
+Progress: [██████░░░░] 57% (4/7 plans)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 3
-- Average duration: ~6 min
-- Total execution time: ~17 min
+- Total plans completed: 4
+- Average duration: ~5.5 min
+- Total execution time: ~22 min
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 01-foundation-csv-pipeline | 2/2 | ~12 min | ~6 min |
-| 02-core-kpi-bottleneck-analysis | 1/3 | ~5 min | ~5 min |
+| 02-core-kpi-bottleneck-analysis | 2/3 | ~10 min | ~5 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-01 (~5 min), 01-02 (~7 min), 02-01 (~5 min)
+- Last 5 plans: 01-01 (~5 min), 01-02 (~7 min), 02-01 (~5 min), 02-02 (~5 min)
 - Trend: Stable
 
 *Updated after each plan completion*
@@ -57,6 +57,11 @@ Recent decisions affecting current work:
 - 02-01: Severity always returns all 4 levels (even count=0) for consistent chart rendering
 - 02-01: Dashboard module extends window.BugAnalysis.renderDashboard
 - 02-01: Toggle control pattern with data-value buttons and event delegation
+- 02-02: Fix time uses only positive durations (resolved > created) — avoids data entry errors
+- 02-02: P50 is true median — middle element for odd count, average of two middles for even
+- 02-02: Distribution buckets: 0-1d, 2-3d, 4-7d, 7+d matching common triage thresholds
+- 02-02: Horizontal bar chart for distribution, stat-box pattern for metric display
+- 02-02: Data table pattern with sticky headers, severity badges (s1-s4), age color coding
 
 ### Pending Todos
 
@@ -69,5 +74,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-11
-Stopped at: Completed 02-01-PLAN.md (KPI Cards & Severity Distribution). Phase 2 plan 1 complete. Ready for 02-02 (Backlog Age & Workload).
+Stopped at: Completed 02-02-PLAN.md (Fix Time Stats & Backlog Age Ranking). Phase 2 plan 2 complete. Ready for 02-03 (Module Trend).
 Resume file: None
