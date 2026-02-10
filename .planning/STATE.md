@@ -5,32 +5,33 @@
 See: .planning/PROJECT.md (updated 2026-02-11)
 
 **Core value:** 让 Bug 积压和修复瓶颈一眼可见 — 导入 CSV 后 30 秒内看到质量状态全貌
-**Current focus:** Phase 1 — Foundation & CSV Pipeline
+**Current focus:** Phase 2 — Core KPI & Bottleneck Analysis
 
 ## Current Position
 
-Phase: 1 of 4 (Foundation & CSV Pipeline) — COMPLETE
-Plan: 2 of 2 in current phase
-Status: Phase 1 complete, ready for Phase 2
-Last activity: 2026-02-11 — Completed 01-02 (CSV Upload & Parsing)
+Phase: 2 of 4 (Core KPI & Bottleneck Analysis) — IN PROGRESS
+Plan: 1 of 3 in current phase — COMPLETE
+Status: 02-01 complete, ready for 02-02 (Backlog Age & Workload)
+Last activity: 2026-02-11 — Completed 02-01 (KPI Cards & Severity Distribution)
 
-Progress: [███░░░░░░░] 29% (2/7 plans)
+Progress: [████░░░░░░] 43% (3/7 plans)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 2
+- Total plans completed: 3
 - Average duration: ~6 min
-- Total execution time: ~12 min
+- Total execution time: ~17 min
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 01-foundation-csv-pipeline | 2/2 | ~12 min | ~6 min |
+| 02-core-kpi-bottleneck-analysis | 1/3 | ~5 min | ~5 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-01 (~5 min), 01-02 (~7 min)
+- Last 5 plans: 01-01 (~5 min), 01-02 (~7 min), 02-01 (~5 min)
 - Trend: Stable
 
 *Updated after each plan completion*
@@ -51,6 +52,11 @@ Recent decisions affecting current work:
 - 01-02: LazyQuotes + FieldsPerRecord=-1 for Zentao CSV quirks
 - 01-02: AppState with sync.RWMutex for thread-safe result storage
 - 01-02: File has 2225 bug records (not 50K — multiline reproduction steps inflate line count)
+- 02-01: Analysis package pattern — types.go + domain files + analyze.go entry point
+- 02-01: DateOnly() truncation for day-level date comparisons
+- 02-01: Severity always returns all 4 levels (even count=0) for consistent chart rendering
+- 02-01: Dashboard module extends window.BugAnalysis.renderDashboard
+- 02-01: Toggle control pattern with data-value buttons and event delegation
 
 ### Pending Todos
 
@@ -63,5 +69,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-11
-Stopped at: Completed 01-02-PLAN.md (CSV Upload & Parsing). Phase 1 complete. Ready for Phase 2 (02-01 Severity & Trend Charts).
+Stopped at: Completed 02-01-PLAN.md (KPI Cards & Severity Distribution). Phase 2 plan 1 complete. Ready for 02-02 (Backlog Age & Workload).
 Resume file: None
