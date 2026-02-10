@@ -9,6 +9,8 @@
     var currentChartType = 'pie';
     var currentScope = 'all';
     var fixTimeDistChart = null;
+    var workloadActiveChart = null;
+    var workloadTotalChart = null;
 
     // Color scheme for severity levels
     var severityColors = {
@@ -38,6 +40,7 @@
                 renderSeverityChart(data.severity);
                 initToggles();
                 renderAge(data.age);
+                renderWorkload(data.workload);
             })
             .catch(function (err) {
                 console.error('Dashboard error:', err);
@@ -434,6 +437,130 @@
         }
 
         tbody.innerHTML = html;
+    }
+
+    // ===========================
+    // Workload Distribution Charts
+    // ===========================
+    function renderWorkload(workload) {
+        if (!workload) return;
+
+        workloadActiveChart = renderWorkloadChart(
+            'chart-workload-active',
+            workload.byActive,
+            '#ff7a45', '#ff4d4f',
+            workloadActiveChart
+        );
+        workloadTotalChart = renderWorkloadChart(
+            'chart-workload-total',
+            workload.byTotal,
+            '#1890ff', '#096dd9',
+            workloadTotalChart
+        );
+    }
+
+    function renderWorkloadChart(containerId, data, colorStart, colorEnd, existingChart) {
+        var container = document.getElementById(containerId);
+        if (!container) return null;
+
+        container.innerHTML = '';
+
+        if (!data || data.length === 0) {
+            container.innerHTML = '<div class="placeholder-text">暂无数据</div>';
+            return null;
+        }
+
+        // Limit to top 15 assignees
+        var maxItems = 15;
+        var displayData = data.length > maxItems ? data.slice(0, maxItems) : data;
+
+        // Set dynamic height before init
+        var chartHeight = Math.max(300, displayData.length * 32);
+        container.style.height = chartHeight + 'px';
+
+        if (existingChart) {
+            existingChart.dispose();
+        }
+        var chart = echarts.init(container);
+
+        // Reverse for ECharts y-axis (highest count at top)
+        var names = [];
+        var values = [];
+        for (var i = displayData.length - 1; i >= 0; i--) {
+            names.push(displayData[i].name);
+            values.push(displayData[i].count);
+        }
+
+        var option = {
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: { type: 'shadow' }
+            },
+            grid: {
+                left: '100',
+                right: '60',
+                top: '8%',
+                bottom: '3%',
+                containLabel: false
+            },
+            xAxis: {
+                type: 'value',
+                minInterval: 1
+            },
+            yAxis: {
+                type: 'category',
+                data: names,
+                axisTick: { show: false },
+                axisLabel: {
+                    fontSize: 12,
+                    width: 80,
+                    overflow: 'truncate',
+                    ellipsis: '...'
+                }
+            },
+            series: [{
+                type: 'bar',
+                data: values.map(function (v) {
+                    return {
+                        value: v,
+                        itemStyle: {
+                            color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [
+                                { offset: 0, color: colorStart },
+                                { offset: 1, color: colorEnd }
+                            ]),
+                            borderRadius: [0, 4, 4, 0]
+                        }
+                    };
+                }),
+                barWidth: '60%',
+                label: {
+                    show: true,
+                    position: 'right',
+                    fontSize: 12,
+                    color: '#666'
+                }
+            }]
+        };
+
+        // Add subtitle if data was truncated
+        if (data.length > maxItems) {
+            option.title = {
+                text: '显示前' + maxItems + '人（共' + data.length + '人）',
+                textStyle: { fontSize: 12, color: '#999', fontWeight: 'normal' },
+                right: '10',
+                top: '0'
+            };
+        }
+
+        chart.setOption(option);
+
+        window.addEventListener('resize', function () {
+            if (chart) {
+                chart.resize();
+            }
+        });
+
+        return chart;
     }
 
     // ===========================

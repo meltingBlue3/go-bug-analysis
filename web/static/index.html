@@ -149,6 +149,18 @@
                 </table>
             </div>
         </div>
+
+        <!-- 人员工作负载分布 -->
+        <div class="chart-row" id="workload-row">
+            <div class="chart-card">
+                <h3 class="chart-title">当前激活 Bug 分布（按指派人）</h3>
+                <div class="chart-container chart-container-dynamic" id="chart-workload-active"></div>
+            </div>
+            <div class="chart-card">
+                <h3 class="chart-title">Bug 总量分布（按指派人）</h3>
+                <div class="chart-container chart-container-dynamic" id="chart-workload-total"></div>
+            </div>
+        </div>
     </main>
 
     <script src="js/lib/echarts.min.js"></script>

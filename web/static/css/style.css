@@ -444,6 +444,11 @@ body {
     min-height: 240px;
 }
 
+/* Dynamic height chart container — height set via JS */
+.chart-container-dynamic {
+    min-height: auto;
+}
+
 /* Data Table */
 .table-scroll {
     max-height: 480px;
