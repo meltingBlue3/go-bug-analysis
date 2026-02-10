@@ -25,8 +25,8 @@
 **Plans**: 2 plans
 
 Plans:
-- [ ] 01-01: Go project scaffold with embed.FS, HTTP server, auto-open browser, static assets (INF-01, INF-02, INF-03)
-- [ ] 01-02: CSV upload endpoint, GBK/UTF-8 detection, header mapping, validation, performance (CSV-01..04, INF-04)
+- [ ] 01-01-PLAN.md — Go 项目脚手架：embed.FS、HTTP 服务器、自动打开浏览器、前端仪表盘外壳 (INF-01, INF-02, INF-03)
+- [ ] 01-02-PLAN.md — CSV 上传管线：编码检测、表头映射、数据验证、前端集成 (CSV-01..04, INF-04)
 
 ### Phase 2: Core KPI & Bottleneck Analysis
 **Goal**: Users can see the full quality status picture — bug inventory, severity distribution, fix time bottlenecks, and personnel load
@@ -74,7 +74,7 @@ Plans:
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation & CSV Pipeline | 0/2 | Not started | - |
+| 1. Foundation & CSV Pipeline | 0/2 | Planned | - |
 | 2. Core KPI & Bottleneck Analysis | 0/3 | Not started | - |
 | 3. Module Heatmap & Trend | 0/1 | Not started | - |
 | 4. Daily Report Generation | 0/1 | Not started | - |
