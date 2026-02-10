@@ -5,6 +5,19 @@ type AnalysisResult struct {
 	KPI      *KPIData      `json:"kpi"`
 	Severity *SeverityData `json:"severity"`
 	Age      *AgeData      `json:"age,omitempty"`
+	Workload *WorkloadData `json:"workload,omitempty"`
+}
+
+// WorkloadData holds per-assignee bug distribution.
+type WorkloadData struct {
+	ByActive []AssigneeStats `json:"byActive"` // sorted descending by count
+	ByTotal  []AssigneeStats `json:"byTotal"`  // sorted descending by count
+}
+
+// AssigneeStats represents one assignee with their bug count.
+type AssigneeStats struct {
+	Name  string `json:"name"`
+	Count int    `json:"count"`
 }
 
 // AgeData holds fix time statistics and backlog age ranking.
