@@ -257,6 +257,56 @@ body {
     line-height: 1.2;
 }
 
+/* KPI Sub Text */
+.kpi-sub {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 4px;
+}
+
+.kpi-card.kpi-warning .kpi-value {
+    color: var(--warning);
+}
+
+.kpi-card.kpi-danger .kpi-value {
+    color: var(--error);
+}
+
+/* Dashboard Header */
+.dashboard-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.dashboard-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.reimport-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 14px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+
+.reimport-btn:hover {
+    color: var(--primary);
+    border-color: var(--primary);
+    background: var(--primary-light);
+}
+
 /* Chart Row */
 .chart-row {
     display: grid;
@@ -272,6 +322,23 @@ body {
     padding: 20px 24px;
 }
 
+.chart-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+}
+
+.chart-header .chart-title {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
 .chart-title {
     font-size: 15px;
     font-weight: 600;
@@ -279,6 +346,40 @@ body {
     margin-bottom: 16px;
     padding-bottom: 12px;
     border-bottom: 1px solid var(--border);
+}
+
+.chart-controls {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.toggle-group {
+    display: inline-flex;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+}
+
+.toggle-btn {
+    padding: 4px 12px;
+    font-size: 12px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    color: var(--text-secondary);
+    font-family: var(--font-family);
+    line-height: 1.5;
+}
+
+.toggle-btn.active {
+    background: var(--primary);
+    color: #ffffff;
+}
+
+.toggle-btn:hover:not(.active) {
+    background: var(--primary-light);
 }
 
 .chart-container {

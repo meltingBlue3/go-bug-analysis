@@ -155,6 +155,9 @@
                 // Switch to dashboard view after a brief delay
                 setTimeout(function () {
                     showDashboard();
+                    if (window.BugAnalysis.renderDashboard) {
+                        window.BugAnalysis.renderDashboard();
+                    }
                 }, 1500);
             } else {
                 showStatus(data.error || '上传失败，请重试', 'error');
@@ -195,10 +198,27 @@
     }
 
     // ===========================
+    // Reimport Button
+    // ===========================
+    function initReimport() {
+        var btn = document.getElementById('btn-reimport');
+        if (btn) {
+            btn.addEventListener('click', function () {
+                showUpload();
+                clearStatus();
+                if (csvFileInput) {
+                    csvFileInput.value = '';
+                }
+            });
+        }
+    }
+
+    // ===========================
     // Initialization
     // ===========================
     function init() {
         initFileInput();
+        initReimport();
     }
 
     // Wait for DOM ready

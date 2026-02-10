@@ -47,54 +47,71 @@
 
     <!-- 仪表盘区域 -->
     <main id="dashboard" class="dashboard" style="display: none;">
+        <!-- 仪表盘顶栏 -->
+        <div class="dashboard-header">
+            <h2 class="dashboard-title">数据概览</h2>
+            <button class="reimport-btn" id="btn-reimport">
+                <svg viewBox="0 0 20 20" width="14" height="14" fill="currentColor">
+                    <path d="M4.293 15.707a1 1 0 010-1.414l5-5a1 1 0 011.414 0l5 5a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414 0z" transform="rotate(-90 10 10)"/>
+                </svg>
+                重新导入
+            </button>
+        </div>
+
         <!-- KPI 卡片行 -->
         <div id="kpi-cards" class="card-row">
-            <div class="kpi-card placeholder-card">
-                <div class="kpi-label">总 Bug 数</div>
-                <div class="kpi-value">—</div>
-                <div class="placeholder-text">数据加载后显示</div>
-            </div>
-            <div class="kpi-card placeholder-card">
-                <div class="kpi-label">激活 Bug</div>
-                <div class="kpi-value">—</div>
-                <div class="placeholder-text">数据加载后显示</div>
-            </div>
-            <div class="kpi-card placeholder-card">
+            <div class="kpi-card placeholder-card" id="kpi-today-new">
                 <div class="kpi-label">今日新增</div>
                 <div class="kpi-value">—</div>
-                <div class="placeholder-text">数据加载后显示</div>
+                <div class="kpi-sub">昨日: —</div>
             </div>
-            <div class="kpi-card placeholder-card">
+            <div class="kpi-card placeholder-card" id="kpi-today-fixed">
                 <div class="kpi-label">今日修复</div>
                 <div class="kpi-value">—</div>
-                <div class="placeholder-text">数据加载后显示</div>
+                <div class="kpi-sub">昨日: —</div>
+            </div>
+            <div class="kpi-card placeholder-card" id="kpi-total">
+                <div class="kpi-label">Bug 总数</div>
+                <div class="kpi-value">—</div>
+                <div class="kpi-sub" style="display:none"></div>
+            </div>
+            <div class="kpi-card placeholder-card" id="kpi-active">
+                <div class="kpi-label">激活 Bug</div>
+                <div class="kpi-value">—</div>
+                <div class="kpi-sub" style="display:none"></div>
+            </div>
+            <div class="kpi-card placeholder-card" id="kpi-pending">
+                <div class="kpi-label">待验证</div>
+                <div class="kpi-value">—</div>
+                <div class="kpi-sub" style="display:none"></div>
             </div>
         </div>
 
         <!-- 图表行 -->
         <div id="charts-row" class="chart-row">
-            <div class="chart-card placeholder-card">
-                <h3 class="chart-title">严重程度分布</h3>
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3 class="chart-title">严重程度分布</h3>
+                    <div class="chart-controls">
+                        <div class="toggle-group" id="severity-type-toggle">
+                            <button class="toggle-btn active" data-value="pie">饼图</button>
+                            <button class="toggle-btn" data-value="bar">柱状图</button>
+                        </div>
+                        <div class="toggle-group" id="severity-scope-toggle">
+                            <button class="toggle-btn active" data-value="all">全部</button>
+                            <button class="toggle-btn" data-value="new">仅新增</button>
+                        </div>
+                    </div>
+                </div>
                 <div class="chart-container" id="chart-severity">
                     <div class="placeholder-text">数据加载后显示</div>
                 </div>
             </div>
-            <div class="chart-card placeholder-card">
-                <h3 class="chart-title">模块 Bug 分布</h3>
-                <div class="chart-container" id="chart-module">
-                    <div class="placeholder-text">数据加载后显示</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 数据表容器 -->
-        <div id="data-table" class="data-table-card placeholder-card">
-            <h3 class="chart-title">Bug 详情列表</h3>
-            <div class="placeholder-text">数据加载后显示</div>
         </div>
     </main>
 
     <script src="js/lib/echarts.min.js"></script>
     <script src="js/app.js" defer></script>
+    <script src="js/dashboard.js" defer></script>
 </body>
 </html>
