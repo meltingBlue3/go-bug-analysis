@@ -8,6 +8,12 @@
     var dashboard = document.getElementById('dashboard');
     var csvFileInput = document.getElementById('csv-file');
     var uploadStatus = document.getElementById('upload-status');
+    var uploadBtn = null; // resolved after DOM ready
+
+    // ===========================
+    // Constants
+    // ===========================
+    var MAX_FILE_SIZE = 100 * 1024 * 1024; // 100MB
 
     // ===========================
     // Status Display
@@ -16,6 +22,11 @@
         if (!uploadStatus) return;
         type = type || 'info';
         uploadStatus.innerHTML = '<div class="status-' + type + '">' + escapeHtml(message) + '</div>';
+    }
+
+    function showStatusHTML(html) {
+        if (!uploadStatus) return;
+        uploadStatus.innerHTML = html;
     }
 
     function clearStatus() {
@@ -57,10 +68,102 @@
     }
 
     // ===========================
+    // Upload Button State
+    // ===========================
+    function setUploading(isUploading) {
+        if (uploadBtn) {
+            if (isUploading) {
+                uploadBtn.classList.add('uploading');
+                uploadBtn.style.pointerEvents = 'none';
+                uploadBtn.style.opacity = '0.6';
+            } else {
+                uploadBtn.classList.remove('uploading');
+                uploadBtn.style.pointerEvents = '';
+                uploadBtn.style.opacity = '';
+            }
+        }
+        if (csvFileInput) {
+            csvFileInput.disabled = isUploading;
+        }
+    }
+
+    // ===========================
     // CSV Upload Handler
     // ===========================
     function uploadCSV(file) {
-        showStatus('文件已选择: ' + file.name + ' (' + formatFileSize(file.size) + ')，上传功能将在下一步实现', 'info');
+        // Client-side file size check
+        if (file.size > MAX_FILE_SIZE) {
+            showStatus('文件过大（最大 100MB），当前文件 ' + formatFileSize(file.size), 'error');
+            return;
+        }
+
+        // Show uploading state
+        setUploading(true);
+        showStatus('正在解析 CSV 文件...', 'info');
+
+        var formData = new FormData();
+        formData.append('file', file);
+
+        fetch('/api/upload', {
+            method: 'POST',
+            body: formData
+        })
+        .then(function (response) {
+            return response.json().then(function (data) {
+                return { status: response.status, data: data };
+            });
+        })
+        .then(function (result) {
+            setUploading(false);
+            var data = result.data;
+
+            if (data.success) {
+                // Build success message with summary
+                var summary = data.summary;
+                var html = '<div class="status-success">'
+                    + escapeHtml('解析成功！共 ' + summary.totalBugs + ' 条 Bug 记录')
+                    + '</div>';
+
+                // Show sample bug info
+                if (summary.sampleBug) {
+                    html += '<div class="status-info" style="margin-top: 8px; font-size: 0.85em;">'
+                        + '示例: #' + escapeHtml(summary.sampleBug.id)
+                        + ' - ' + escapeHtml(summary.sampleBug.title)
+                        + ' [' + escapeHtml(summary.sampleBug.status) + ']'
+                        + '</div>';
+                }
+
+                // Show warnings if any
+                if (summary.warnings && summary.warnings.length > 0) {
+                    var warnCount = Math.min(summary.warnings.length, 5);
+                    html += '<div class="status-warning" style="margin-top: 8px; font-size: 0.85em;">';
+                    html += '⚠ ' + summary.warnings.length + ' 条警告：<br>';
+                    for (var i = 0; i < warnCount; i++) {
+                        html += escapeHtml(summary.warnings[i]) + '<br>';
+                    }
+                    if (summary.warnings.length > 5) {
+                        html += '... 还有 ' + (summary.warnings.length - 5) + ' 条';
+                    }
+                    html += '</div>';
+                }
+
+                showStatusHTML(html);
+
+                // Store data for other modules
+                window.BugAnalysis.data = data.summary;
+
+                // Switch to dashboard view after a brief delay
+                setTimeout(function () {
+                    showDashboard();
+                }, 1500);
+            } else {
+                showStatus(data.error || '上传失败，请重试', 'error');
+            }
+        })
+        .catch(function (err) {
+            setUploading(false);
+            showStatus('网络错误，请检查服务是否运行', 'error');
+        });
     }
 
     // ===========================
@@ -68,6 +171,9 @@
     // ===========================
     function initFileInput() {
         if (!csvFileInput) return;
+
+        // Resolve the upload button (label wrapping the input)
+        uploadBtn = csvFileInput.closest('.upload-btn') || csvFileInput.parentElement;
 
         csvFileInput.addEventListener('change', function (e) {
             var file = e.target.files && e.target.files[0];
@@ -109,7 +215,8 @@
         showStatus: showStatus,
         clearStatus: clearStatus,
         showDashboard: showDashboard,
-        showUpload: showUpload
+        showUpload: showUpload,
+        data: null
     };
 
 })();

@@ -27,7 +27,8 @@ func main() {
 		log.Fatalf("无法加载静态资源: %v", err)
 	}
 
-	handler := server.New(staticFS)
+	state := &server.AppState{}
+	handler := server.New(staticFS, state)
 
 	addr := fmt.Sprintf(":%d", *port)
 	srv := &http.Server{
