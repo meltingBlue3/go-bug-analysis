@@ -67,8 +67,6 @@ Plans:
   3. User can one-click copy the generated report to clipboard and paste it into any chat/document tool
 **Plans**: 1 plan
 
-**Plans:** 1 plan
-
 Plans:
 - [ ] 04-01-PLAN.md — 日报生成：ReportData 类型 + ComputeReport() 生成 Markdown/纯文本 + 前端展示与剪贴板复制 (RPT-01..05)
 
