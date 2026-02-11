@@ -15,6 +15,9 @@
     var moduleTrendChart = null;
     var moduleTrendData = null;
     var currentTrendRange = '30';
+    var reportData = null;
+    var currentReportFormat = 'plain';
+    var reportControlsInitialized = false;
 
     // Color scheme for severity levels
     var severityColors = {
@@ -46,6 +49,8 @@
                 renderAge(data.age);
                 renderWorkload(data.workload);
                 renderModule(data.module);
+                reportData = data.report;
+                renderReport(data.report);
             })
             .catch(function (err) {
                 console.error('Dashboard error:', err);
@@ -867,6 +872,68 @@
             currentTrendRange = btn.getAttribute('data-value');
             renderModuleTrend(moduleTrendData);
         });
+    }
+
+    // ===========================
+    // Report Section
+    // ===========================
+    function renderReport(report) {
+        var contentEl = document.getElementById('report-content');
+        if (!contentEl) return;
+
+        if (!report) {
+            contentEl.textContent = '暂无日报数据';
+            return;
+        }
+
+        if (currentReportFormat === 'plain') {
+            contentEl.textContent = report.plainText;
+        } else {
+            contentEl.textContent = report.markdown;
+        }
+
+        if (!reportControlsInitialized) {
+            initReportControls();
+            reportControlsInitialized = true;
+        }
+    }
+
+    function initReportControls() {
+        // Format toggle
+        var toggleGroup = document.getElementById('report-format-toggle');
+        if (toggleGroup) {
+            toggleGroup.addEventListener('click', function (e) {
+                var btn = e.target.closest('.toggle-btn');
+                if (!btn || btn.classList.contains('active')) return;
+
+                var siblings = toggleGroup.querySelectorAll('.toggle-btn');
+                for (var i = 0; i < siblings.length; i++) {
+                    siblings[i].classList.remove('active');
+                }
+                btn.classList.add('active');
+
+                currentReportFormat = btn.getAttribute('data-value');
+                renderReport(reportData);
+            });
+        }
+
+        // Copy button
+        var copyBtn = document.getElementById('btn-copy-report');
+        if (copyBtn) {
+            copyBtn.addEventListener('click', function () {
+                if (!reportData) return;
+                var text = currentReportFormat === 'plain' ? reportData.plainText : reportData.markdown;
+                navigator.clipboard.writeText(text).then(function () {
+                    var toast = document.getElementById('copy-toast');
+                    if (toast) {
+                        toast.classList.add('show');
+                        setTimeout(function () { toast.classList.remove('show'); }, 2000);
+                    }
+                }).catch(function (err) {
+                    console.error('复制失败:', err);
+                });
+            });
+        }
     }
 
     // ===========================

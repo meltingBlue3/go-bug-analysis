@@ -589,6 +589,76 @@ body {
 }
 
 /* ===========================
+   Report Card
+   =========================== */
+.report-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 20px 24px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.report-content {
+    background: #f8f9fa;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 16px 20px;
+    font-family: "JetBrains Mono", "Fira Code", "Source Code Pro", Consolas, monospace;
+    font-size: 13px;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    word-break: break-word;
+    max-height: 600px;
+    overflow-y: auto;
+    color: var(--text);
+}
+
+/* Copy Button */
+.copy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border: 1px solid var(--primary);
+    border-radius: var(--radius-sm);
+    background: var(--primary-light);
+    color: var(--primary);
+    font-size: 13px;
+    font-family: var(--font-family);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.copy-btn:hover {
+    background: var(--primary);
+    color: #fff;
+}
+
+/* Copy Toast */
+.copy-toast {
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    background: var(--success);
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: all 0.3s;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.copy-toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ===========================
    Responsive
    =========================== */
 @media (max-width: 768px) {
