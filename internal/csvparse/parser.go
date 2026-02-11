@@ -64,6 +64,11 @@ func Parse(r io.Reader) (*ParseResult, error) {
 
 		bug := rowToBug(row, headerMapping)
 
+		// 禅道导出 CSV 中，已解决的 Bug 的"指派给"列可能变为 "Closed"，此时用"解决者"列填充
+		if bug.Assignee == "Closed" && bug.Resolver != "" {
+			bug.Assignee = bug.Resolver
+		}
+
 		// Warn about missing required fields on specific rows
 		if bug.ID == "" {
 			warnings = append(warnings, fmt.Sprintf("第 %d 行: Bug编号 字段为空", i+2))
