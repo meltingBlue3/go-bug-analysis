@@ -711,10 +711,11 @@
                 }
             },
             grid: {
-                left: 120,
-                right: 80,
+                left: '3%',
+                right: '4%',
                 top: 30,
-                bottom: 40
+                bottom: 40,
+                containLabel: true
             },
             xAxis: {
                 type: 'category',
@@ -727,9 +728,7 @@
                 splitArea: { show: true },
                 axisLabel: {
                     fontSize: 12,
-                    width: 100,
-                    overflow: 'truncate',
-                    ellipsis: '...'
+                    interval: 0
                 }
             },
             visualMap: {
