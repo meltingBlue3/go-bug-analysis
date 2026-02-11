@@ -11,5 +11,6 @@ func Analyze(bugs []csvparse.Bug) *AnalysisResult {
 		Severity: ComputeSeverity(bugs),
 		Age:      ComputeAge(bugs),
 		Workload: ComputeWorkload(bugs),
+		Module:   ComputeModule(bugs),
 	}
 }

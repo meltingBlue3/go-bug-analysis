@@ -6,6 +6,7 @@ type AnalysisResult struct {
 	Severity *SeverityData `json:"severity"`
 	Age      *AgeData      `json:"age,omitempty"`
 	Workload *WorkloadData `json:"workload,omitempty"`
+	Module   *ModuleData   `json:"module,omitempty"`
 }
 
 // WorkloadData holds per-assignee bug distribution.
@@ -74,4 +75,40 @@ type SeverityItem struct {
 type SeverityData struct {
 	All     []SeverityItem `json:"all"`
 	NewOnly []SeverityItem `json:"newOnly"` // today's new bugs only
+}
+
+// ModuleData holds all module-level analysis results.
+type ModuleData struct {
+	Stats   []ModuleStats `json:"stats"`   // per-module total/active counts
+	Heatmap *HeatmapData  `json:"heatmap"` // module × severity matrix
+	Trend   *TrendData    `json:"trend"`   // daily bug creation trend
+}
+
+// ModuleStats represents bug counts for one module.
+type ModuleStats struct {
+	Name       string  `json:"name"`
+	Total      int     `json:"total"`
+	Active     int     `json:"active"`
+	ActiveRate float64 `json:"activeRate"` // active/total as percentage (0-100)
+}
+
+// HeatmapData holds the Module × Severity heatmap matrix.
+type HeatmapData struct {
+	Modules    []string `json:"modules"`    // Y-axis labels (module names)
+	Severities []string `json:"severities"` // X-axis labels: ["致命","严重","一般","轻微"]
+	Data       [][]int  `json:"data"`       // [moduleIdx][severityIdx] = count
+	MaxValue   int      `json:"maxValue"`   // max cell value for color scale
+}
+
+// TrendData holds daily bug creation counts per module.
+type TrendData struct {
+	Dates  []string      `json:"dates"`  // date strings "01-15", "01-16"...
+	Series []TrendSeries `json:"series"` // one per top module
+	Days7  int           `json:"days7"`  // index offset for 7-day view start
+}
+
+// TrendSeries represents one module's daily counts for trend chart.
+type TrendSeries struct {
+	Name   string `json:"name"`
+	Counts []int  `json:"counts"` // one count per date
 }
