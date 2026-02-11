@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-02-11)
 
 **Core value:** 让 Bug 积压和修复瓶颈一眼可见 — 导入 CSV 后 30 秒内看到质量状态全貌
-**Current focus:** Phase 2 COMPLETE — Ready for Phase 3
+**Current focus:** Phase 3 COMPLETE — Ready for Phase 4
 
 ## Current Position
 
-Phase: 2 of 4 (Core KPI & Bottleneck Analysis) — COMPLETE
-Plan: 3 of 3 in current phase — COMPLETE
-Status: Phase 2 complete, all 3 plans done. Ready for Phase 3 (Advanced Charts & Trend Analysis).
-Last activity: 2026-02-11 — Completed 02-03 (Personnel Workload Distribution)
+Phase: 3 of 4 (Module Heatmap & Trend) — COMPLETE
+Plan: 1 of 1 in current phase — COMPLETE
+Status: Phase 3 complete, all 1 plan done. Ready for Phase 4 (Daily Report Generation).
+Last activity: 2026-02-11 — Completed 03-01 (Module Heatmap & Trend)
 
-Progress: [████████░░] 71% (5/7 plans)
+Progress: [█████████░] 86% (6/7 plans)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 5
-- Average duration: ~5.4 min
-- Total execution time: ~27 min
+- Total plans completed: 6
+- Average duration: ~5.2 min
+- Total execution time: ~31 min
 
 **By Phase:**
 
@@ -29,10 +29,11 @@ Progress: [████████░░] 71% (5/7 plans)
 |-------|-------|-------|----------|
 | 01-foundation-csv-pipeline | 2/2 | ~12 min | ~6 min |
 | 02-core-kpi-bottleneck-analysis | 3/3 | ~15 min | ~5 min |
+| 03-module-heatmap-trend | 1/1 | ~4 min | ~4 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-02 (~7 min), 02-01 (~5 min), 02-02 (~5 min), 02-03 (~5 min)
-- Trend: Stable at ~5 min/plan
+- Last 5 plans: 02-01 (~5 min), 02-02 (~5 min), 02-03 (~5 min), 03-01 (~4 min)
+- Trend: Stable at ~5 min/plan, slight acceleration
 
 *Updated after each plan completion*
 
@@ -67,6 +68,12 @@ Recent decisions affecting current work:
 - 02-03: Top 15 assignees shown max — chart readability
 - 02-03: Dynamic chart height: Math.max(300, items * 32)px
 - 02-03: Warm gradient for active, cool gradient for total — visual distinction
+- 03-01: Top 15 modules for heatmap, top 10 for trend — readability vs info density
+- 03-01: Empty module → "未分类" consistent with "未指派" pattern
+- 03-01: Section divider pattern for logical dashboard grouping
+- 03-01: Click-to-sort table with header indicator toggling
+- 03-01: Reversed y-axis heatmap so highest-count module at top
+- 03-01: 30-day trend with days7=23 offset for 7-day slice
 
 ### Pending Todos
 
@@ -79,5 +86,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-11
-Stopped at: Completed 02-03-PLAN.md (Personnel Workload Distribution). Phase 2 complete (all 3 plans). Ready for Phase 3.
+Stopped at: Completed 03-01-PLAN.md (Module Heatmap & Trend). Phase 3 complete (1/1 plan). Ready for Phase 4.
 Resume file: None
