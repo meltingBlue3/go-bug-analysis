@@ -7,6 +7,14 @@ type AnalysisResult struct {
 	Age      *AgeData      `json:"age,omitempty"`
 	Workload *WorkloadData `json:"workload,omitempty"`
 	Module   *ModuleData   `json:"module,omitempty"`
+	Report   *ReportData   `json:"report,omitempty"`
+}
+
+// ReportData holds the generated daily report in both Markdown and plain text formats.
+type ReportData struct {
+	Markdown  string `json:"markdown"`
+	PlainText string `json:"plainText"`
+	Date      string `json:"date"` // "2006-01-02" format
 }
 
 // WorkloadData holds per-assignee bug distribution.
