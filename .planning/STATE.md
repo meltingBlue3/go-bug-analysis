@@ -11,7 +11,7 @@ See: .planning/PROJECT.md (updated 2026-02-11)
 
 Phase: 4 of 4 — ALL COMPLETE
 Status: v1.0 MVP shipped 2026-02-11
-Last activity: 2026-02-11 — Milestone v1.0 archived
+Last activity: 2026-02-11 - Completed quick task 1: fix assignee=Closed fallback to resolver in CSV parsing
 
 Progress: [██████████] 100% (7/7 plans, 4/4 phases)
 
@@ -46,6 +46,12 @@ None.
 ### Blockers/Concerns
 
 None.
+
+### Quick Tasks Completed
+
+| # | Description | Date | Commit | Directory |
+|---|-------------|------|--------|-----------|
+| 1 | fix assignee=Closed fallback to resolver in CSV parsing | 2026-02-11 | 1ca1b19 | [1-fix-assignee-closed-fallback-to-resolver](./quick/1-fix-assignee-closed-fallback-to-resolver/) |
 
 ## Session Continuity
 
