@@ -55,7 +55,7 @@ Plans:
 **Plans**: 1 plan
 
 Plans:
-- [ ] 03-01: Module statistics table, ECharts heatmap, and trend line charts (MOD-01..03)
+- [ ] 03-01-PLAN.md — 模块统计表（可排序）、模块×严重程度热力图、模块Bug趋势折线图 (MOD-01, MOD-02, MOD-03)
 
 ### Phase 4: Daily Report Generation
 **Goal**: Users can generate and copy a ready-to-send daily quality report in seconds
