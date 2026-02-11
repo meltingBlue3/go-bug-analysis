@@ -535,6 +535,59 @@ body {
     padding: 16px;
 }
 
+/* Section divider for module analysis */
+.section-divider {
+    margin: 2rem 0 1rem;
+    padding: 0 0 0.5rem;
+    border-bottom: 2px solid var(--primary);
+}
+.section-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text);
+    margin: 0;
+}
+
+/* Full-width chart card */
+.chart-card-full {
+    flex: 1 1 100%;
+    min-width: 0;
+}
+
+/* Larger chart container for trend */
+.chart-container-lg {
+    min-height: 400px;
+}
+
+/* Medium table scroll (module table) */
+.table-scroll-md {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+/* Sortable table headers */
+.sortable-table th {
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.2s;
+}
+.sortable-table th:hover {
+    background-color: rgba(24, 144, 255, 0.08);
+}
+.sort-active {
+    color: var(--primary);
+}
+
+/* Active rate styling */
+.rate-danger { color: #ff4d4f; font-weight: 600; }
+.rate-warning { color: #faad14; font-weight: 600; }
+
+/* Module count badge */
+.module-count {
+    font-size: 0.85rem;
+    color: #999;
+}
+
 /* ===========================
    Responsive
    =========================== */

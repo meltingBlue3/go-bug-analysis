@@ -161,6 +161,60 @@
                 <div class="chart-container chart-container-dynamic" id="chart-workload-total"></div>
             </div>
         </div>
+
+        <!-- 模块质量分析 -->
+        <div class="section-divider">
+            <h2 class="section-title">模块质量分析</h2>
+        </div>
+
+        <!-- 模块统计表 -->
+        <div class="data-table-card" id="module-stats-card">
+            <div class="chart-header">
+                <h3 class="chart-title">模块 Bug 统计</h3>
+                <span class="module-count" id="module-count"></span>
+            </div>
+            <div class="table-scroll table-scroll-md">
+                <table class="data-table sortable-table" id="module-table">
+                    <thead>
+                        <tr>
+                            <th data-sort="name">模块名称</th>
+                            <th data-sort="total" class="sort-active sort-desc">Bug 总数 ▼</th>
+                            <th data-sort="active">激活数</th>
+                            <th data-sort="rate">激活率</th>
+                        </tr>
+                    </thead>
+                    <tbody id="module-tbody">
+                        <tr><td colspan="4" class="placeholder-text">数据加载后显示</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 模块 × 严重程度热力图 -->
+        <div class="chart-row">
+            <div class="chart-card chart-card-full">
+                <h3 class="chart-title">模块 × 严重程度 热力图</h3>
+                <div class="chart-container chart-container-dynamic" id="chart-module-heatmap"></div>
+            </div>
+        </div>
+
+        <!-- 模块 Bug 趋势 -->
+        <div class="chart-row">
+            <div class="chart-card chart-card-full">
+                <div class="chart-header">
+                    <h3 class="chart-title">模块 Bug 新增趋势</h3>
+                    <div class="chart-controls">
+                        <div class="toggle-group" id="trend-range-toggle">
+                            <button class="toggle-btn" data-value="7">近 7 天</button>
+                            <button class="toggle-btn active" data-value="30">近 30 天</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-container chart-container-lg" id="chart-module-trend">
+                    <div class="placeholder-text">数据加载后显示</div>
+                </div>
+            </div>
+        </div>
     </main>
 
     <script src="js/lib/echarts.min.js"></script>
