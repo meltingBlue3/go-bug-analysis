@@ -34,15 +34,22 @@
 
 ## 🚀 快速开始
 
+### 0. Go 下载
+访问官网：`https://golang.google.cn/dl/`
+
 ### 1. 运行方式
 
 #### 直接运行 (开发模式)
 ```bash
+# 切换国内 Go Proxy
+go env -w GOPROXY=https://goproxy.cn,direct
 go run main.go
 ```
 
 #### 编译运行
 ```bash
+# 切换国内 Go Proxy
+go env -w GOPROXY=https://goproxy.cn,direct
 go build -o go-bug-analysis.exe main.go
 ./go-bug-analysis.exe
 ```
