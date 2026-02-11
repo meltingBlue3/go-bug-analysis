@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-02-11)
 
 **Core value:** 让 Bug 积压和修复瓶颈一眼可见 — 导入 CSV 后 30 秒内看到质量状态全貌
-**Current focus:** Phase 3 COMPLETE — Ready for Phase 4
+**Current focus:** Phase 4 COMPLETE — All phases done, project complete
 
 ## Current Position
 
-Phase: 3 of 4 (Module Heatmap & Trend) — COMPLETE
+Phase: 4 of 4 (Daily Report Generation) — COMPLETE
 Plan: 1 of 1 in current phase — COMPLETE
-Status: Phase 3 complete, all 1 plan done. Ready for Phase 4 (Daily Report Generation).
-Last activity: 2026-02-11 — Completed 03-01 (Module Heatmap & Trend)
+Status: Phase 4 complete, all 1 plan done. All 4 phases complete — project finished.
+Last activity: 2026-02-11 — Completed 04-01 (Daily Report Generation)
 
-Progress: [█████████░] 86% (6/7 plans)
+Progress: [██████████] 100% (7/7 plans)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 6
-- Average duration: ~5.2 min
-- Total execution time: ~31 min
+- Total plans completed: 7
+- Average duration: ~4.7 min
+- Total execution time: ~33 min
 
 **By Phase:**
 
@@ -30,10 +30,11 @@ Progress: [█████████░] 86% (6/7 plans)
 | 01-foundation-csv-pipeline | 2/2 | ~12 min | ~6 min |
 | 02-core-kpi-bottleneck-analysis | 3/3 | ~15 min | ~5 min |
 | 03-module-heatmap-trend | 1/1 | ~4 min | ~4 min |
+| 04-daily-report-generation | 1/1 | ~2 min | ~2 min |
 
 **Recent Trend:**
-- Last 5 plans: 02-01 (~5 min), 02-02 (~5 min), 02-03 (~5 min), 03-01 (~4 min)
-- Trend: Stable at ~5 min/plan, slight acceleration
+- Last 5 plans: 02-02 (~5 min), 02-03 (~5 min), 03-01 (~4 min), 04-01 (~2 min)
+- Trend: Accelerating — final plan fastest at ~2 min
 
 *Updated after each plan completion*
 
@@ -74,6 +75,11 @@ Recent decisions affecting current work:
 - 03-01: Click-to-sort table with header indicator toggling
 - 03-01: Reversed y-axis heatmap so highest-count module at top
 - 03-01: 30-day trend with days7=23 offset for 7-day slice
+- 04-01: strings.Builder + fmt.Sprintf for report — no template library needed
+- 04-01: Plain text default for report toggle — IM paste most common use case
+- 04-01: Risk bug filter: severity 1-2 AND age > 7 days, capped at 10 display rows
+- 04-01: Bottleneck modules: top 5 with Active > 0 from Module.Stats
+- 04-01: Title truncation at 30 runes with "…" for table readability
 
 ### Pending Todos
 
@@ -86,5 +92,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-11
-Stopped at: Completed 03-01-PLAN.md (Module Heatmap & Trend). Phase 3 complete (1/1 plan). Ready for Phase 4.
+Stopped at: Completed 04-01-PLAN.md (Daily Report Generation). Phase 4 complete (1/1 plan). All 4 phases done — project complete.
 Resume file: None
